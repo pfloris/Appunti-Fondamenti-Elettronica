@@ -96,7 +96,7 @@
 		Si applica la KVL alla maglia Gate-Source, per trovare la $V_{GS}$;
 		\item
 		Si utilizza il valore di $V_{GS}$ trovato per calcolare la corrente $I_D$. La formula da utilizzare è quella per il MOSFET in saturazione.\newline
-		Inizialmente il calcolo viene fatto senza tener conto del parametro $\lambda$ (modulazione della lunghezza del canale); successivamente, quando si avrà anche una prima stima di $V_{DS}$, si dovrà tornare indietro per verificare se il risultato ottenuto tenendo conto di $\lambda$ stia entro il limite del 5%;
+		Inizialmente il calcolo viene fatto senza tener conto del parametro $\lambda$ (modulazione della lunghezza del canale); successivamente, quando si avrà anche una prima stima di $V_{DS}$, si dovrà tornare indietro per verificare se il risultato ottenuto tenendo conto di $\lambda$ stia entro la tolleranza delle resistenze;
 		\item
 		Si applica la KVL alla maglia Drain-Source e si usa il valore di $I_D$ per calcolare $V_{DS}$;
 		\item
@@ -108,7 +108,7 @@
 		Il punto di riposo $Q$ è dato dall'insieme dei parametri $I_D$, $V_{GS}$ e $V_{DS}$.		
 		
 	\end{enumerate}\medskip
-	\textbf{NOTA:} Se $V_{DS}=V_{GS}$, ovvero drain e gate sono cortocircuitati, allora il transistor lavora certamente in saturazione, infatti $V_{DS} > V_{GS} - V_{th}$. Questo impone una scarsa escursione del segnale in uscita, che sarà limitato dalla $V_{th}$ stessa.
+	\textbf{NOTA:} Se $V_{DS}=V_{GS}$, ovvero drain e gate sono cortocircuitati, allora il transistor lavora certamente in saturazione, infatti $V_{DS} > V_{GS} - V_{th}$. Questo impone una scarsa escursione del segnale in uscita, che sarà limitato nella gran parte dei casi dalla $V_{th}$ stessa.
 	
 	Se la polarizzazione è ``a quattro resistenze'', $V_G$ è ottenuta tramite il partitore.
 	
@@ -131,7 +131,7 @@
 		\subsubsection*{Stadi a singolo transistor}	
 		Per identificare gli stadi elementari a MOSFET (common source, common drain, common gate) basta seguire il percorso del segnale: se esso entra in un morsetto ed esce da un altro morsetto, il morsetto rimanente è detto  ``comune''  (common).
 		Quindi, ad esempio, se il segnale entra nel gate ed esce dal source, allora lo stadio è un common drain.
-	Per essere precisi, è meglio anche spendere due parole sulla alimentazione. 
+	Per essere precisi, è meglio spendere anche due parole sulla alimentazione. 
 Se essa è fornita tramite una sola tensione e massa, allora l'alimentazione è detta unipolare positiva o negativa, a seconda del segno della tensione.  \newline
 		Se l'alimentazione è fornita tramite due tensioni di segno opposto e massa, essa è detta bipolare. Se le tensioni di segno opposto sono uguali, l'alimentazione è bipolare simmetrica, mentre è bipolare asimmetrica se sono diverse.
 		\newline
@@ -152,9 +152,9 @@ Se essa è fornita tramite una sola tensione e massa, allora l'alimentazione è 
 		Gli stadi con amplificatore operazionale possibili sono quattro: amplificatore invertente, amplificatore non invertente, filtro passa-basso, filtro passa-banda.
 		\begin{itemize}
 			\item \textbf{Amplificatore invertente e non invertente}\newline
-				Se il segnale entra nel morsetto invertente (segno -), l'amplificatore è invertente, altrimenti è non invertente.
+				Se il segnale è applicato al morsetto invertente (segno -), l'amplificatore è invertente, altrimenti è non invertente.
 				
-				È da specificare che per la natura costruttiva dell'operazionale, esso ha sempre un comportamento da filtro passa-basso, con frequenza di taglio in ogni caso elevata (vedremo poi come valutare questo fatto).
+				È da specificare che per la natura costruttiva dell'operazionale, queste due configurazioni hanno sempre un comportamento da filtro, normalmente passa-basso ma inserendo una capacità di blocco in ingresso si possono trasformare in passa-banda (su questo saranno necessarie altre specificazioni).
 			\item \textbf{Filtro passa-basso attivo invertente}\newline
 			Se nel ramo di retroazione è presente un condensatore in parallelo a una resistenza, lo stadio è un filtro passa-basso attivo.
 			Si può vedere anche come un circuito integratore reale.
