@@ -1,0 +1,28 @@
+[FIDOCAD]
+FJC B 0.5
+MC 90 40 2 1 ey_libraries.opaopa0
+LI 75 35 80 35 0
+LI 80 35 80 20 0
+LI 105 20 105 40 0
+LI 110 40 105 40 0
+LI 105 40 110 40 0
+MC 80 50 0 0 ey_libraries.refpnt0
+LI 80 45 80 50 0
+MC 54 50 0 0 ey_libraries.refpnt0
+MC 111 50 0 0 ey_libraries.refpnt0
+TY 51 41 3 2 0 0 0 * Vin
+TY 107 43 3 2 0 0 0 * Vout
+EV 112 41 110 39 0
+SA 80 35 0
+SA 105 40 0
+MC 93 20 0 0 dan_lib.144
+FCJ
+TY 92 13 2 2 0 0 0 * Rf
+TY 103 30 2 2 0 0 0 * 
+MC 65 35 0 0 dan_lib.144
+FCJ
+TY 64 28 2 2 0 0 0 * R
+TY 75 45 2 2 0 0 0 * 
+LI 83 20 80 20 0
+LI 103 20 105 20 0
+MC 55 35 0 0 dan_lib.243
