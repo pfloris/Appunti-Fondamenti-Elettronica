@@ -28,13 +28,6 @@
 	
 	\section*{Amplificatori a MOSFET}
 		\subsection*{Considerazioni Preliminari}	
-			%\begin{itemize}
-				%\item \textbf{Common Source}
-				%\item \textbf{Common Gate}
-				%\item \textbf{Common Drain}
-	
-			%\end{itemize}
-			
 			Come sapete bene, nello studio degli amplificatori a MOSFET è di fondamentale importanza l'analisi "a piccolo segnale", per studiarne alcuni dei suoi parametri fondamentali. 
 Per farlo sono neccessarie delle solide basi in elettrotecnica (circuiti equivalenti di Thévenin e Norton), che in questo breve documento daremo per scontate. A dirla tutta, non affronteremo l'analisi a piccolo segnale in grande dettaglio: è già spiegata in modo più che esaustivo in qualunque libro di Elettronica. 
 È sufficiente dire che al circuito di partenza ne va sostituito uno fatto in questo modo: le alimentazioni diventano collegamenti a massa, i capacitori cortocircuiti, il MOSFET da un generatore di corrente $i_{d}$ controllato da $v_{gs}$ con transconduttanza $g_{m}$,
@@ -48,6 +41,14 @@ Ovviamente non può pasare nessuna corrente attraverso il gate e questo viene mo
 **(Daniele, qui mi avventuro in una pseudo-spiegazione, dimmi se secondo te ha senso)**
 
 Il punto di tutto questo è che noi facciamo l'ipotesi di essere già in saturazione e a frequenze intermedie (concetti che verranno approfonditi in seguito), per questo non ci importa di alimentazione e capacitori. Noi vogliamo solo vedere cosa succede se applichiamo un segnale abbastanza piccolo da non modificare le condizioni di riposo.
+
+		\subsection*{Stadi Elementari}
+		
+		\begin{itemize}
+				\item \textbf{Common Source}
+				\item \textbf{Common Gate}
+				\item \textbf{Common Drain}
+		\end{itemize}
 			
 		\subsection*{Massima escursione del segnale in uscita}
 		La massima escursione del segnale in uscita da un amplificatore realizzato con un singolo MOSFET è limitata dalla possibilità che il componente esca dalla regione di saturazione, entrando quindi in interdizione o in regione di triodo.
