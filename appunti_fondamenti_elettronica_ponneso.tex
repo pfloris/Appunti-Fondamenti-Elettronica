@@ -36,6 +36,7 @@ Per farlo sono neccessarie delle solide basi in elettrotecnica (circuiti equival
 	i_{d}=g_{m}v_{gs}
 \end{equation}
 
+e dalla sua resistenza di saturazione $r_{o}$ in parallelo ad esso.
 Ovviamente non può pasare nessuna corrente attraverso il gate e questo viene modellato con un circuito aperto (impedenza infinita) tra gate-drain e gate-source.
 
 **(medgives, qui mi avventuro in una pseudo-spiegazione, dimmi se secondo te ha senso)**
@@ -43,12 +44,61 @@ Ovviamente non può pasare nessuna corrente attraverso il gate e questo viene mo
 Il punto di tutto questo è che noi facciamo l'ipotesi di essere già in saturazione e a frequenze intermedie (concetti che verranno approfonditi in seguito), per questo non ci importa di alimentazione e capacitori. Noi vogliamo solo vedere cosa succede se applichiamo un segnale abbastanza piccolo da non modificare le condizioni di riposo.
 
 		\subsection*{Stadi Elementari}
+Cominciamo con il definire i parametri fondamentali di un amplificatore:
+		\begin{enumerate}
+		\item
+		Resistenza di ingresso
+			\begin{equation}
+			R_{in}=\frac{v_{i}}{i_{i}}
+			\end{equation}
+		\item
+		Resistenza di uscita
+			\begin{equation}
+			R_{out}=\frac{v_{x}}{i_{x}}
+			\end{equation}
+		\item
+		Guadagno di tensione a circuito aperto
+			\begin{equation}
+			A_{vo}=\frac{v_{o}}{v_{i}}
+			\end{equation}
+		\item
+		Guadagno di tensione a carico
+			\begin{equation}
+			A_{v}=A_{vo}\frac{R_{L}}{R_{L}+R_{out}}
+			\end{equation}
+		\item
+		Guadagno di tensione totale
+			\begin{equation}
+			G_{v}=\frac{v_{o}}{v_{sig}}
+			\end{equation}
+		ovvero
+			\begin{equation}
+			G_{v}=\frac{R_{in}}{R_{in}+R_{sig}} A_{vo} \frac{R_{L}}{R_{L}+R_{out}}
+			\end{equation}
+		\end{enumerate}	
+		
+		in cui $v_{in}$ è la tensione in ingresso all'amplificatore
+			\begin{equation}
+			v_{i}=\frac{R_{in}}{R_{in}+R_{sig}} v_{sig}
+			\end{equation}
+		$v_{x}$ è un generatore di prova applicato all'uscita e $i_{x}$ la corrente erogata da tale generatore (o viceversa). 
+		Ovviamente, come suggerisce il nome, il guadagno a circuito aperto va calcolato considerando $R_{L}=\infty$. 
+		Nel guadagno a carico abbiamo usato la relazione
+			\begin{equation}
+			v_{o}=\frac{R_{L}}{R_{L}+R_{out}} A_{vo} v_{i}
+			\end{equation}
+		Non parliamo di guadagno di corrente poichè è banale ricavarne l'espressione in rispetto a quelle date per quello in tensione, avendo l'accortezza di trasformare "circuito aperto" in "cortocircuito".
 		
 		\begin{itemize}
 				\item \textbf{Common Source}
+
+				
+				
 				\item \textbf{Common Gate}
 				\item \textbf{Common Drain}
 		\end{itemize}
+		
+		
 			
 		\subsection*{Massima escursione del segnale in uscita}
 		La massima escursione del segnale in uscita da un amplificatore realizzato con un singolo MOSFET è limitata dalla possibilità che il componente esca dalla regione di saturazione, entrando quindi in interdizione o in regione di triodo.
@@ -112,19 +162,22 @@ Il punto di tutto questo è che noi facciamo l'ipotesi di essere già in saturaz
 		Si applica la KVL alla maglia Gate-Source, per trovare la $V_{GS}$;
 		\item
 		Si utilizza il valore di $V_{GS}$ trovato per calcolare la corrente $I_D$. La formula da utilizzare è quella per il MOSFET in saturazione.\newline
-		Inizialmente il calcolo viene fatto senza tener conto del parametro $\lambda$ (modulazione della lunghezza del canale); successivamente, quando si avrà anche una prima stima di $V_{DS}$, si dovrà tornare indietro per verificare se il risultato ottenuto tenendo conto di $\lambda$ stia entro la tolleranza delle resistenze;
+		Inizialmente il calcolo viene fatto senza tener conto del parametro $\lambda$ (modulazione della lunghezza del canale); successivamente, quando si avrà anche una prima stima di $V_{DS}$, si dovrà tornare indietro per verificare se il risultato ottenuto tenendo conto di $\lambda$ stia o meno entro la tolleranza delle resistenze;
 		\item
 		Si applica la KVL alla maglia Drain-Source e si usa il valore di $I_D$ per calcolare $V_{DS}$;
 		\item
-		Si verifica la veridicità dell'ipotesi di saturazione ($V_{DS} >= V_{OV}$). Se non è verificata, torna indietro e assumi un'altra regione di lavoro (altamente improbabile; la maggior parte delle volte è indice di errori concettuali o di calcolo);
+		Si verifica la veridicità dell'ipotesi di saturazione ($V_{DS} >= V_{OV}$). Se non è verificata, si torna indietro e si assume un'altra regione di lavoro (altamente improbabile; la maggior parte delle volte è indice di errori concettuali o di calcolo);
 		\item
 		Si verifica lo scostamento di $I_{D}$ con l'introduzione del parametro $\lambda$. Se l'errore introdotto ($|I_{D (nuova)} - I_{D (vecchia)}|$) rientra nella percentuale di tolleranza delle resistenze che è data, allora va bene e possiamo tenere i nostri risultati.\newline
 		Se non rientra, dobbiamo rifare i conti con l'introduzione del parametro $\lambda$ (cosa possibile nell'esame).
 		\item
-		Il punto di riposo $Q$ è dato dall'insieme dei parametri $I_D$, $V_{GS}$ e $V_{DS}$.		
+		Il punto di riposo $Q$ è dato dall'insieme dei parametri $I_D$, $V_{GS}$ e $V_{DS}$.
+		
+			
 		
 	\end{enumerate}\medskip
-	\textbf{NOTA:} Se $V_{DS}=V_{GS}$, ovvero drain e gate sono cortocircuitati, allora il transistor lavora certamente in saturazione, infatti $V_{DS} > V_{GS} - V_{th}$. Questo impone una scarsa escursione del segnale in uscita, che sarà limitato nella gran parte dei casi dalla $V_{th}$ stessa.
+	\textbf{NOTE:} Se $V_{DS}=V_{GS}$, ovvero drain e gate sono cortocircuitati, allora il transistor lavora certamente in saturazione, infatti $V_{DS} > V_{GS} - V_{th}$. Questo impone una scarsa escursione del segnale in uscita, che sarà limitato nella gran parte dei casi dalla $V_{th}$ stessa.
+	La $V_{DS}$ di solito viene pensata per essere intorno a $\frac{1}{3}V_{DD}$, con $V_{DD}$ alimentazione complessiva. Se il risultato è molto maggiore, significa che la $I_{D}$ finale con alta probabilità sarà da calcolare tenendo conto di $\lambda$.
 	
 	Se la polarizzazione è ``a quattro resistenze'', $V_G$ è ottenuta tramite il partitore.
 	
